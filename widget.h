@@ -12,6 +12,7 @@
 #include <QTcpSocket>
 #include <QFile>
 #include <QDataStream>
+#include <QProgressBar>
 
 
 namespace Ui {
@@ -30,6 +31,7 @@ public:
     QPushButton *sendBtn;
     QLabel *fileLabel;
     QLabel *progressLabel;
+    QProgressBar *progressBar;
 
     QString fileName;
     QTcpSocket *tcpSocket;
