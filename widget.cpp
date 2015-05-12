@@ -39,7 +39,6 @@ void Widget::fileOpened() {
 }
 
 void Widget::onSend() {
-    qDebug() << "trying to send a file...";
 
     tcpSocket->connectToHost("127.0.0.1", 33333);
     QFile file(fileName);
@@ -53,7 +52,9 @@ void Widget::onSend() {
             QString fileName(fileInfo.fileName());
 
             out << fileName;
+            qDebug() << fileName;
             out << QString::number(fileInfo.size());
+            qDebug() << fileInfo.size();
 
             progressBar->setMaximum(fileInfo.size());
 
