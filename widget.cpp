@@ -34,7 +34,8 @@ Widget::~Widget()
 
 void Widget::fileOpened() {
     fileName = QFileDialog::getOpenFileName(this, tr("Open file"));
-    fileLabel->setText(fileName);
+    QFileInfo fileInfo(fileName);
+    fileLabel->setText(fileInfo.fileName() + " : " + QString::number(fileInfo.size()));
     qDebug() << fileName;
 }
 
@@ -51,10 +52,10 @@ void Widget::onSend() {
             QFileInfo fileInfo(file);
             QString fileName(fileInfo.fileName());
 
-            out << fileName;
-            qDebug() << fileName;
-            out << QString::number(fileInfo.size());
-            qDebug() << fileInfo.size();
+//            out << fileName;
+//            qDebug() << fileName;
+//            out << QString::number(fileInfo.size());
+//            qDebug() << fileInfo.size();
 
             progressBar->setMaximum(fileInfo.size());
 
@@ -68,7 +69,6 @@ void Widget::onSend() {
                 progressBar->setValue(size);
                 out << rawFile;
                 qDebug() << QString::number(fileInfo.size());
-                qDebug() << QString("%1 of %2").arg(size, fileInfo.size());
                 qDebug() << "ToSend:"<< rawFile.size();
             }
         }
