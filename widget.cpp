@@ -52,22 +52,22 @@ void Widget::onSend() {
             QFileInfo fileInfo(file);
             QString fileName(fileInfo.fileName());
 
-//            out << fileName;
-//            qDebug() << fileName;
-//            out << QString::number(fileInfo.size());
-//            qDebug() << fileInfo.size();
+            out << fileName;
+            qDebug() << fileName;
+            out << QString::number(fileInfo.size());
+            qDebug() << fileInfo.size();
 
             progressBar->setMaximum(fileInfo.size());
 
             while (!file.atEnd())
             {
                 QByteArray rawFile;
-                rawFile = file.read(50000);
+                rawFile = file.read(5000);
                 //false size inc
                 QFileInfo rawFileInfo(rawFile);
                 size += rawFileInfo.size();
-                progressBar->setValue(size);
                 out << rawFile;
+                progressBar->setValue(rawFile.size());
                 qDebug() << QString::number(fileInfo.size());
                 qDebug() << "ToSend:"<< rawFile.size();
             }
