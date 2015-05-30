@@ -13,6 +13,7 @@
 #include <QFile>
 #include <QDataStream>
 #include <QProgressBar>
+#include <QTcpServer>
 
 
 namespace Ui {
@@ -32,14 +33,20 @@ public:
     QLabel *fileLabel;
     QLabel *progressLabel;
     QProgressBar *progressBar;
+    QTcpServer *tcpServer;
+    QTcpSocket *tcpServerConnection;
 
     QString fileName;
     QTcpSocket *tcpSocket;
+
+    void startServer();
 
     ~Widget();
 public slots:
     void fileOpened();
     void onSend();
+    void acceptReplyConnection();
+    void slotReadClient();
 };
 
 #endif // WIDGET_H
